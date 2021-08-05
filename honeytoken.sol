@@ -1,4 +1,7 @@
-// SPDX-License-Identifier: MIT
+/**
+* This is the official smart contract of the HONEY ERC20 token.
+* Developed by Tom J. Pandolfi
+*/
 
 pragma solidity ^0.8.2;
 
@@ -15,9 +18,9 @@ abstract contract Context {
 }
 
 /**
- * @dev Interface of the BEP20 standard as defined in the EIP.
+ * @dev Interface of the ERC20 standard as defined in the EIP.
  */
-interface IBEP20 {
+interface IERC20 {
     /**
      * @dev Returns the amount of tokens in existence.
      */
@@ -438,7 +441,7 @@ contract Ownable is Context {
     }
 }
 
-contract CoinToken is Context, IBEP20, Ownable {
+contract honeyToken is Context, IERC20, Ownable { //Customizable at deployment
     using SafeMath for uint256;
     using Address for address;
 
@@ -832,9 +835,9 @@ contract CoinToken is Context, IBEP20, Ownable {
         ORIG_BURN_FEE = _BURN_FEE;
         ORIG_CHARITY_FEE = _CHARITY_FEE;
 
-        _TAX_FEE = 0;
-        _BURN_FEE = 0;
-        _CHARITY_FEE = 0;
+        _TAX_FEE = 0; // Initial value: 3%
+        _BURN_FEE = 0; // Initial value: 3%
+        _CHARITY_FEE = 0; // Initial value: 3%
     }
 
     function restoreAllFee() private {
